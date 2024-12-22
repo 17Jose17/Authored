@@ -1,7 +1,7 @@
 vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<point>> & Ps, const point & p, const vector<vector<point>> & T, const vector<vector<int>> & Ls, const vector<point> & B){
 	for(int i = 0; i < T.size(); i++){
 		if(pointInPolygon(T[i], p)){
-		    return {T[i][1], T[i][0]}; 
+			return {T[i][1], T[i][0]}; 
 		}
 	}
 
@@ -10,26 +10,26 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 	auto tang = [&](int l, int r, const vector<point> & A, ld w) -> int {
 		int res = l;
 		int y = A.size();
-        while(l <= r){
-            int m = (l + r) / 2;
-			ld a = (A[m] - p).cross(A[(m + 1) % y] - p) * w, b = (A[m] - p).cross(A[(m - 1 + y) % y] - p) * w;
-			if(geq(a, 0) && geq(b, 0)) return m;
-            if(geq(a, 0)) r = m - 1, res = m;
-            else l = m + 1;
-        }
-        return res;
-    };
+	        while(l <= r){
+	        	int m = (l + r) / 2;
+				ld a = (A[m] - p).cross(A[(m + 1) % y] - p) * w, b = (A[m] - p).cross(A[(m - 1 + y) % y] - p) * w;
+				if(geq(a, 0) && geq(b, 0)) return m;
+	            	if(geq(a, 0)) r = m - 1, res = m;
+	            	else l = m + 1;
+		}
+	        return res;
+	};
 
 	auto bs = [&](int l, int r, const vector<point> & A, ld w) -> int {
-        int res = l;
-        ld w1 = p.x * w;
-        while(l <= r){
-            int m = (l + r) / 2;
-			if(ge(A[m].x * w, w1)) r = m - 1;
-			else res = max(res, m), l = m + 1;
-        }
+	        int res = l;
+	        ld w1 = p.x * w;
+	        while(l <= r){
+	            	int m = (l + r) / 2;
+				if(ge(A[m].x * w, w1)) r = m - 1;
+				else res = max(res, m), l = m + 1;
+	        }
         return res;
-    };
+    	};
 
 	point left = p, rigth = p;
 	point f1 = Ps[0][0], f2 = Ps[0][m - 1];
@@ -55,10 +55,10 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 		if(geq((Ps[0][0] - p).cross(Ps[1][k - 1] - p), 0) && geq((Ps[0][0] - p).cross(Ps[1][k - 2] - p), 0) && geq((Ps[0][0] - p).cross(Ps[0][1] - p), 0)) rigth = Ps[0][0];
 		else rigth = Ps[1][tang(min(t + 1, k - 1), k - 1, Ps[1], 1)];
 	}else{
-	    int i = lower_bound(all(Ps[0]), p) - Ps[0].begin();
-	    int j = lower_bound(all(B), p) - B.begin();
-	    if(pointInSegment(Ps[0][i], Ps[0][i - 1], p)) left = Ps[0][i - 1], rigth = Ps[0][i];
-	    if(pointInSegment(B[j], B[j - 1], p)) left = B[j], rigth = B[j - 1];
+		int i = lower_bound(all(Ps[0]), p) - Ps[0].begin();
+		int j = lower_bound(all(B), p) - B.begin();
+		if(pointInSegment(Ps[0][i], Ps[0][i - 1], p)) left = Ps[0][i - 1], rigth = Ps[0][i];
+		if(pointInSegment(B[j], B[j - 1], p)) left = B[j], rigth = B[j - 1];
 	}
 	return {left, rigth};
 }
