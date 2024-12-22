@@ -10,7 +10,7 @@ Given a polygon defined by `n` vertices and a set of `k` external points, the al
 
 - **O(n log n + k log n)**
 
-  - **O(n log n)**: To sort the vertices of the polygon.
+  - **O(n log n)**: This time complexity arises from the preprocessing step.
   - **O(k log n)**: To compute the tangents from the `k` external points.
 
 ## License
