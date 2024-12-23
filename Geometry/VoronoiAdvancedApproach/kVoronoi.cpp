@@ -1,8 +1,3 @@
-vector<point> inicialize(){
-	point a(-Inf, -Inf), b(Inf, -Inf), c(Inf, Inf), d(-Inf, Inf);
-	return {a, b, c, d};
-}
-
 vector<vector<vector<point>>> kVoronoi(vector<point> P, int k){
 
 	int n = P.size();
@@ -28,13 +23,17 @@ vector<vector<vector<point>>> kVoronoi(vector<point> P, int k){
 		return neigh;
 	};
 
+	auto inicialice = [&]() -> vector<point> {
+		return {point(-Inf, -Inf), point(Inf, -Inf), point(Inf, Inf), point(-Inf, Inf)};
+	};
+
 	vector<vector<vector<point>>> ans(n), res(n);
 	vector<vector<vector<int>>> neighs(n);
 
 	for(int i = 0; i < n; i++){
 		vector<int> u;
 		for(int j = 0; j < n; j++) if(i != j) u.pb(j);
-		ans[i].pb(subVor(inicialize(), i, u));
+		ans[i].pb(subVor(inicialice(), i, u));
 	}
 
 	for(int i = 1; i < k; i++){
