@@ -34,10 +34,10 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 	auto v1 = tang(t1, m - 1, 1, 0), v2 = tang(t2, k - 1, 1, lk);
 	
 	if(leq((P[u1] - p).cross(P[(u1 - 1 + n) % n] - p), 0) && leq((P[u1] - p).cross(P[(u1 + 1) % n] - p), 0)) left = P[u1];
-	else if(leq((P[(lk + u2) % n] - p).cross(P[(lk + u2 - 1 + n) % n] - p), 0) && leq((P[(lk + u2) % n] - p).cross(P[(lk + u2 + 1) % n] - p), 0)) left = P[(lk + u2) % n];
+	if(leq((P[(lk + u2) % n] - p).cross(P[(lk + u2 - 1 + n) % n] - p), 0) && leq((P[(lk + u2) % n] - p).cross(P[(lk + u2 + 1) % n] - p), 0)) left = P[(lk + u2) % n];
 	
 	if(geq((P[v1] - p).cross(P[(v1 - 1 + n) % n] - p), 0) && geq((P[v1] - p).cross(P[(v1 + 1) % n] - p), 0)) rigth = P[v1];
-	else if(geq((P[(lk + v2) % n] - p).cross(P[(lk - 1 + n + v2) % n] - p), 0) && geq((P[(lk + v2) % n] - p).cross(P[(lk + 1 + v2) % n] - p), 0)) rigth = P[(lk + v2) % n];
+	if(geq((P[(lk + v2) % n] - p).cross(P[(lk - 1 + n + v2) % n] - p), 0) && geq((P[(lk + v2) % n] - p).cross(P[(lk + 1 + v2) % n] - p), 0)) rigth = P[(lk + v2) % n];
     
 	return {left, rigth};
 }
