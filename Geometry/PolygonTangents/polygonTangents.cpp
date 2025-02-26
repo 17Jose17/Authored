@@ -6,11 +6,11 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 	auto tang = [&](int l, int r, ld w, int kl) -> int {
 		int res = min(l, r);
 	        while(l <= r){
-	            int m = (l + r) / 2;
-				ld a = (P[(m + kl) % n] - p).cross(P[(m + 1 + kl) % n] - p) * w, b = (P[(m + kl) % n] - p).cross(P[(m - 1 + n + kl) % n] - p) * w;
-				if(geq(a, 0) && geq(b, 0)) return m;
-	            if(geq(a, 0)) r = m - 1, res = m;
-	            else l = m + 1;
+			int m = (l + r) / 2;
+			ld a = (P[(m + kl) % n] - p).cross(P[(m + 1 + kl) % n] - p) * w, b = (P[(m + kl) % n] - p).cross(P[(m - 1 + n + kl) % n] - p) * w;
+			if(geq(a, 0) && geq(b, 0)) return m;
+			if(geq(a, 0)) r = m - 1, res = m;
+			else l = m + 1;
 	        }
 	        return res;
     	};
@@ -19,10 +19,10 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 	        int res = l;
 	        ld w1 = p.x * w;
 	        while(l <= r){
-	            int m = (l + r) / 2;
-				if(ge(A[m].x * w, w1)) r = m - 1;
-				else res = m, l = m + 1;
-	        }
+			int m = (l + r) / 2;
+			if(ge(A[m].x * w, w1)) r = m - 1;
+			else res = m, l = m + 1;
+		}
 	        return res;
 	    };
     
