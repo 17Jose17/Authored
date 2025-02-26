@@ -24,7 +24,7 @@ vector<point> tangentsPointPolygon(const vector<point> & P, const vector<vector<
 			else res = m, l = m + 1;
 		}
 	        return res;
-	    };
+	};
     
 	point left = p, rigth = p;
 
